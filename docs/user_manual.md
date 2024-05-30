@@ -2,7 +2,7 @@
 ### 1. Registration and authorisation
 To work with the service the user needs to authorise in the system. The authorisation page opens by default. To register in the service it is necessary to click on the right bottom button `Registration`
 
-![](docs/img/user_manual/auth_manual.jpg)
+![](.//img/user_manual/auth_manual.jpg)
 
 Next, you need to specify your e-mail address (you cannot create several accounts with the same e-mail), create a unique username and a password of 8 to 128 characters. Then you need to click on the `Register` button.
 
