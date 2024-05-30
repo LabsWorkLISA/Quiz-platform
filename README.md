@@ -24,8 +24,48 @@ Details of the documentation can be found at the links below:
 
 - [ER-diagrams](docs/er_diagram.md), [Sequence Diagram](docs/sequence_diagrams.md)  - this document will help you determine what data you will get out and how you can use it.
 
+- [Algorithm of assessment of individual competences](docs/evaluation_algorithm.md)  - here you can familiarise yourself with the algorithm of assessment of individual abilities - competences, which is embedded in the Quiz platform.
+
 
 ## Installation
+
+### 1. Select the DEV branch
+```
+git checkout DEV
+```
+
+### 2. Create environment files:
+```
+touch ./compose/.env.analytics ./compose/.env.subjects ./compose/.env.tests ./compose/.env.users
+```
+
+### 3. Fill all environment files according to the same template
+```bash
+# Установка переменных окружения для Django проекта
+SECRET_KEY = '<Django key>'
+DEBUG = False
+ALLOWED_HOSTS = <valid hosts through ,>
+CSRF_TRUSTED_ORIGINS = <valid hosts through ,>
+# Переменные для создания суперпользователя Django
+DJANGO_SUPERUSER_USERNAME=<username Django>
+DJANGO_SUPERUSER_EMAIL=<user mail Django>
+DJANGO_SUPERUSER_PASSWORD=<Django's password>
+```
+
+### 4. Create database files
+```bash
+mkdir dbs
+touch ./dbs/.analytics_db.sqlite3 ./dbs/.subjects_db.sqlite3 ./dbs/.tests_db.sqlite3 ./dbs/.users_db.sqlite3
+```
+
+### 5. Start the image build
+```bash
+docker compose -f compose/docker-compose.yml up
+```
+
+### 6. The project is available localhost:8888
+
+### 7. Admin panels are available at localhost:8888/<module name>/admin/
 
 ## Contacts
 This platform is being developed at ITMO University, LISA laboratory as part of the research work on "Methods and algorithms for intelligent services and applications".
@@ -49,7 +89,6 @@ The team working on the project is listed below (everyone can be contacted perso
 - [Stabrovskiy Vladimir](https://t.me/godnesty) - Mobile-developer
 
 - [Timonenko Nikolay](https://t.me/NikTimo) - DevOps engineer
-
 
 ## The science component of the Quiz platform
 - [Алгоритм оценивания индивидуальных способностей в сервисе для интеллектуального кросс-тестирования](https://kmu.itmo.ru/digests/article/13777)
