@@ -13,10 +13,6 @@ This repository contains a tool that is an interactive platform designed to anal
 ## Demo
 *in the process of implementation
 
-## Restrictions on the use of the service
-
-## Upper-level algorithm of the service operation
-
 ![]()
 
 ## Documentation
@@ -35,6 +31,24 @@ Details of the documentation can be found at the links below:
 This platform is being developed at ITMO University, LISA laboratory as part of the research work on "Methods and algorithms for intelligent services and applications".
 
 The team working on the project is listed below (everyone can be contacted personally):
+
+- [Ishutina Yelizaveta](https://t.me/ishutachkaa) - Project manager. If you have any questions, please write to ([liz16z2001@mail.ru](mailto:liz16z2001@mail.ru))
+
+- [Kuznetsov Vyacheslav](https://t.me/viacheslav_kuznetcov)-  Team leader
+
+- [Kalacheva Vera](https://t.me/verkalacheva) - Backend developer
+
+- [Antsiferova Tatiana](https://t.me/antsiferovaTA) - Backend developer
+
+- [Sobol Vladimir](https://t.me/vovasobol1) - Backend developer
+
+- [Soloveva Polina](https://t.me/solcticeranger) - Data Scientist
+
+- [Orudzhev Eldar](https://t.me/eldar_oru) - Mobile-developer
+
+- [Stabrovskiy Vladimir](https://t.me/godnesty) - Mobile-developer
+
+- [Timonenko Nikolay](https://t.me/NikTimo) - DevOps engineer
 
 
 ## The science component of the Quiz platform
