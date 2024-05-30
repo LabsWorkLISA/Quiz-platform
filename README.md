@@ -41,12 +41,12 @@ touch ./compose/.env.analytics ./compose/.env.subjects ./compose/.env.tests ./co
 
 ### 3. Fill all environment files according to the same template
 ```bash
-# Установка переменных окружения для Django проекта
+# Setting environment variables for Django project
 SECRET_KEY = '<Django key>'
 DEBUG = False
 ALLOWED_HOSTS = <valid hosts through ,>
 CSRF_TRUSTED_ORIGINS = <valid hosts through ,>
-# Переменные для создания суперпользователя Django
+# Variables for creating a Django superuser
 DJANGO_SUPERUSER_USERNAME=<username Django>
 DJANGO_SUPERUSER_EMAIL=<user mail Django>
 DJANGO_SUPERUSER_PASSWORD=<Django's password>
