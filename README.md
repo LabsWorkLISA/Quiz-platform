@@ -90,9 +90,14 @@ The team working on the project is listed below (everyone can be contacted perso
 
 - [Timonenko Nikolay](https://t.me/NikTimo) - DevOps engineer
 
+### Scientific supervisors:
+- [Grudinin Vladimir](https://itmo.ru/ru/viewperson/434/grudinin_vladimir_alekseevich.htm)
+- [Gorelik Samuel](https://edu.itmo.ru/ru/lecturers_and_professors/175676)
+
+
 ## The science component of the Quiz platform
 - [Алгоритм оценивания индивидуальных способностей в сервисе для интеллектуального кросс-тестирования](https://kmu.itmo.ru/digests/article/13777)
 - [Разработка мобильного приложения для сервиса по составлению и прохождению тестов учащимися](https://kmu.itmo.ru/digests/article/12401)
 - [Разработка интеллектуальной системы с возможностью генерации и персонализации под пользователя вопросов на основе учебных материалов](https://kmu.itmo.ru/digests/article/13672)
-- [УПРАВЛЕНИЕ ОБРАЗОВАТЕЛЬНЫМ ПРОЦЕССОМ](https://www.sciencedirect.com/science/article/pii/S1877050923020094HTTPS//science-education.ru/ru/article/view?id=13932)
-- [Образование в цифровую эпоху](https://arxiv.org/abs/2312.04330](https://magellan.pro/2019/03/04/obrazovanie-v-cifrovuju-jepohu/)https://magellan.pro/2019/03/04/obrazovanie-v-cifrovuju-jepohu/)
+- [Управление образовательным процессом](https://science-education.ru/ru/article/view?id=13932)
+- [Образование в цифровую эпоху](https://magellan.pro/2019/03/04/obrazovanie-v-cifrovuju-jepohu/)
