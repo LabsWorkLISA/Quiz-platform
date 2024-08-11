@@ -17,5 +17,7 @@ def formula_1(id_result):
                 points_question -= 1/num_all
         points_question *= question.question_points
         points_question = round(points_question, 2)
+        if points_question < 0:
+            points_question = 0
         points_total += points_question
     return points_total

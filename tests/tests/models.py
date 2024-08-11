@@ -37,7 +37,8 @@ class Result(models.Model):
     id_test = models.ForeignKey(Test, on_delete=models.CASCADE)
     subject = models.TextField(null=False, blank=False)
     theme = models.TextField(null=False, blank=False)
-    points_user = models.FloatField(null=True, blank=True)
+    points_user = models.IntegerField(null=True, blank=True)
+    score = models.FloatField(null=True, blank=True)
 
     class Meta:
         app_label = 'tests'

@@ -139,12 +139,17 @@ jobs:
         username: ${{ secrets.USER }}
         password: ${{ secrets.SSH_PASSPHRASE }}
         script: |
+          docker-compose run users python manage.py dumpdata --exclude=contenttypes --indent=2 > DEV/compose/backups/users_db_backup.json
+          docker-compose run subjects python manage.py dumpdata --exclude=auth --exclude=contenttypes --indent=2 > DEV/compose/backups/subjects_db_backup.json
+          docker-compose run tests python manage.py dumpdata --exclude=auth --exclude=contenttypes --indent=2 > DEV/compose/backups/tests_db_backup.json
           docker compose -f DEV/compose/docker-compose-DH-DEV.yml down
           docker volume rm compose-dev_static
           cp -r DEV/compose/env ./env
+          cp -r DEV/compose/backups ./backups
           rm -rf DEV
           mkdir -p DEV/compose
           mv ./env DEV/compose
+          mv ./backups DEV/compose
     - name: Copy compose via ssh
       uses: appleboy/scp-action@master
       with:

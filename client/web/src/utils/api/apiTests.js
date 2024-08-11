@@ -77,6 +77,14 @@ export const API_TESTS = {
         getAllResults: async ({id}) => {
             const answer = await getAPIClient.get(`/results/full/getByStudentId/${id}`);
             return answer;
-    },
+        },
+        getAnalyticityCourse: async ({student_id, subject_id}) => {
+            const answer = await getAPIClient.get(`/analytics/analiticity/course/${student_id}/${subject_id}`);
+            return answer;
+        },
+        getLeadershipCourse: async ({student_id, subject_id}) => {
+            const answer = await getAPIClient.get(`/analytics/leadership/course/${student_id}/${subject_id}`);
+            return answer;
+        },
 }
 }

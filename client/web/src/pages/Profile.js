@@ -27,60 +27,62 @@ const Profile = () => {
   const { user } = useContext(UserContext);
 
   const [results, setResults] = useState([]);
-  const [subjects, setSubjects] = useState({})
-  const [themes, setThemes] = useState({})
+  const [subjects, setSubjects] = useState([])
+  const [themes, setThemes] = useState([])
 
-  const [analytic, setAnalytic] = useState(null)
+  const [analytic, setAnalytic] = useState({})
 
   useEffect(() => {
     createSets()
-   
-   
+    console.log('subjects', subjects)
   }, [results]);
 
+  useEffect(() => {
+    if (subjects.length !== 0 && results.length !== 0) {
+      let Analytic = {};
+      let promises = subjects.map(async (s) => {
+        let filter_results = Array.from(results.filter(r => r.subject == s));
+        let testId = filter_results[0].id_test;
+        const testResponse = await API_TESTS.tests.get({id: testId});
+        var details = testResponse.data;
+        let subject_id = details.subject_id;
+  
+        const analyticityResponse = await API_TESTS.results.getAnalyticityCourse({ student_id: user.info.id, subject_id: subject_id });
+        const leadershipResponse = await API_TESTS.results.getLeadershipCourse({ student_id: user.info.id, subject_id: subject_id });
+  
+        const analyticity = analyticityResponse.data;
+        const leadership = leadershipResponse.data;
+  
+        Analytic[s] = {'analyticity': analyticity, 'leadership': leadership};
+      });
+  
+      Promise.all(promises)
+        .then(() => {
+          setAnalytic(Analytic);
+          console.log("Analytic", analytic);
+        })
+        .catch((error) => {
+          console.error("Error fetching test details for subject", error);
+        });
+    };
+  }, [subjects]); 
+
   const handleButton = () => {
-    API_TESTS.results
-      .getAllResults({ id: user.info.id })
-      .then((res) => {
-        console.log("LOAD RES-", res.data);
-        setResults(res.data);
-      })
-      .then(() => {
-        // setSubjects(new Set(Array.from(results.map(r => r.subject))))
-        // setThemes(new Set(Array.from(results.map(r => r.theme))))
-        // createSets()
-        countAnalyticsCourse()
-      })
-     
-      .catch((err) => console.log(err));
-  };
+    API_TESTS.results.getAllResults({ id: user.info.id })
+    .then((res) => {
+      console.log("LOAD RES-", res.data);
+      setResults(res.data);
+    })
+    .catch ((error) => {
+      console.error("Failed to load results:", error);
+  });
+  }
 
   const createSets = () => {
     setSubjects(Array.from(new Set(Array.from(results.map(r => r.subject)))))
     setThemes(Array.from(new Set(Array.from(results.map(r => r.theme)))))
     console.log(subjects)
     console.log(themes)
-  }
-
-  const countAnalyticsCourse = () => {
-    for (let s of subjects) {
-      let filter_result = results.filter(r => r.subject == s)
-      let points = Array.from(filter_result.map(r => r.points_user))
-      points.sort(function(a, b) { return a - b; });
-
-      let a
-      if (points.length % 2 == 0 ) {
-        const m = points.length / 2
-        a = ((points[m] + points[m-1]) / 2 ).toFixed(2)
-        setAnalytic(a)
-      } else {
-        const m = Math.floor(points.length / 2)
-        a = points[m].toFixed(2)
-        setAnalytic(a)
-      }
-
-
-    }
   }
 
   return (
@@ -95,26 +97,31 @@ const Profile = () => {
         
        
         <Text fontWeight={800} fontSize={24} borderBottom={'1px solid gray'} marginBottom={5}>ЦИФРОВОЕ ПОРТФОЛИО СТУДЕНТА</Text>
-        {subjects?.length && ( <>
-          
-          {subjects.map(s => <>
-            <Box border={'1px solid gray'} width={'fit-content'} padding={3}>
-            <Text marginRight={5} fontSize={22} borderBottom={'1px solid black'} >По курсу <strong>{s}</strong>:</Text>
-            
-            <Text fontWeight={800} fontSize={18} color={'blue'}>АНАЛИТИЧНОСТЬ</Text>
-          <Text color={'green'} fontWeight={600}> {analytic}</Text>
-          
-          
+        {subjects?.length && (
+        <>
+          {subjects.map((subject, index) => {
+            return (
+            <React.Fragment key={index}>
+              <Box border={'1px solid gray'} width={'fit-content'} padding={3}>
+                <Text marginRight={5} fontSize={22} borderBottom={'1px solid black'}>
+                  По курсу <strong>{subject}</strong>:
+                </Text>
+                
+                <Text fontWeight={800} fontSize={20} color={'blue'}>АНАЛИТИЧНОСТЬ</Text>
+                <Text color={'green'} fontSize={20} fontWeight={600}>
+                  {analytic[subject] ? analytic[subject].analyticity : 'loading'}
+                </Text> 
 
-          <Text fontWeight={800} fontSize={20} color={'orange'}>КРЕАТИВНОСТЬ</Text>
-          <Text color={'green'} fontWeight={600}> {0.85}</Text>
-            </Box>
-            
-
-          <Divider marginBottom={5} color={'black'}/>
-          </>)}
+                <Text fontWeight={800} fontSize={20} color={'orange'}>КРЕАТИВНОСТЬ</Text>
+                <Text color={'green'} fontSize={20} fontWeight={600}>
+                  {analytic[subject] ? analytic[subject].leadership : 'loading'}
+                </Text>
+                
+              </Box>
+              <Divider marginBottom={5} color={'black'}/>
+            </React.Fragment>
+        )})}
         </>
-          
         )}
 
 
