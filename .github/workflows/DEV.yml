@@ -141,11 +141,11 @@ jobs:
         script: |
           mkdir -p DEV/compose/backups
           docker-compose run users python manage.py dumpdata --exclude=contenttypes --indent=2 > users_db_backup.json
-          cp DEV/compose/backups/users_db_backup.json DEV/users/users_db_backup.json
+          cp DEV/compose/backups/users_db_backup.json ../users/users_db_backup.json
           docker-compose run subjects python manage.py dumpdata --exclude=auth --exclude=contenttypes --indent=2 > subjects_db_backup.json
-          cp DEV/compose/backups/subjects_db_backup.json DEV/subjects/subjects_db_backup.json
+          cp DEV/compose/backups/subjects_db_backup.json ../subjects/subjects_db_backup.json
           docker-compose run tests python manage.py dumpdata --exclude=auth --exclude=contenttypes --indent=2 > tests_db_backup.json
-          cp DEV/compose/backups/tests_db_backup.json DEV/tests/tests_db_backup.json
+          cp DEV/compose/backups/tests_db_backup.json ../tests/tests_db_backup.json
           docker compose -f DEV/compose/docker-compose-DH-DEV.yml down
           docker volume rm compose-dev_static
           cp -r DEV/compose/env ./env
