@@ -49,7 +49,7 @@ services:
     restart: unless-stopped
 
   analytics:
-    image: huecker.io/ishutachkaa/backend-analytics:DEV
+    image: ishutachkaa/backend-analytics:PROD
     env_file:
       - ./env/.env.analytics
     command: ./cmd.analytics.sh
