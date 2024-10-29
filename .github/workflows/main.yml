@@ -145,11 +145,10 @@ jobs:
           docker compose -f PROD/compose/docker-compose-DH.yml down
           docker volume rm compose-prod_static
           cp -r PROD/compose/env ./env
-          cp -r PROD/dbs ./dbs${{ steps.date.outputs.date }}
+          cp -r PROD/dbs ./dbs_backup/dbs-PROD-${{ steps.date.outputs.date }}
           rm -rf PROD
           mkdir -p PROD/compose
           mv ./env PROD/compose
-          mv ./dbs${{ steps.date.outputs.date }} PROD
     - name: Copy compose via ssh
       uses: appleboy/scp-action@master
       with:
