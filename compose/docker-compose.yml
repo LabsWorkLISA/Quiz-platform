@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 volumes:
   static:
 services:
@@ -15,7 +15,7 @@ services:
       dockerfile: docker/dev/Dockerfile
     env_file:
       - ./env/.env.subjects
-    command: ./cmd.subjects.sh
+    command: sh /app/cmd.subjects.sh
     volumes:
       - ../dbs/subjects_db.sqlite3:/app/db.sqlite3
       - ./backups/subjects_db_backup.json:/app/courses/fixtures/subjects_db_backup.json
@@ -29,7 +29,7 @@ services:
     build: ../users/
     env_file:
       - ./env/.env.users
-    command: ./cmd.users.sh
+    command: sh /app/cmd.users.sh
     volumes:
       - ../dbs/users_db.sqlite3:/app/db.sqlite3
       - ./backups/users_db_backup.json:/app/users/fixtures/users_db_backup.json
@@ -43,7 +43,7 @@ services:
     build: ../tests/
     env_file:
       - ./env/.env.tests
-    command: ./cmd.tests.sh
+    command: sh /app/cmd.tests.sh
     volumes:
       - ../dbs/tests_db.sqlite3:/app/db.sqlite3
       - ./backups/tests_db_backup.json:/app/fixtures/tests_db_backup.json
@@ -68,7 +68,6 @@ services:
   #     - client
   #     - tests
   #   restart: unless-stopped
-
 
   gateway:
     image: nginx
