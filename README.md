@@ -101,3 +101,4 @@ The team working on the project is listed below (everyone can be contacted perso
 - [Разработка интеллектуальной системы с возможностью генерации и персонализации под пользователя вопросов на основе учебных материалов](https://kmu.itmo.ru/digests/article/13672)
 - [Управление образовательным процессом](https://science-education.ru/ru/article/view?id=13932)
 - [Образование в цифровую эпоху](https://magellan.pro/2019/03/04/obrazovanie-v-cifrovuju-jepohu/)
+
