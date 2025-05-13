@@ -3,7 +3,6 @@ import { useUsers } from "../store/users";
 import { API_USER, cookies } from "../utils/api/apiUser";
 
 export const useUsersAuthentication = () => {
-  console.log("hook is active");
   const { setUser } = useUsers.getState();
 
   useEffect(() => {

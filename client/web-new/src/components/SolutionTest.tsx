@@ -82,28 +82,30 @@ const TestComponent: React.FC<TestComponentProps> = ({
         const correctAnswers = await API_TESTS.tests.getQuestionAnswer({
           id: question.id,
         });
-        console.log(question, correctAnswers.data);
         const correctIds = correctAnswers.data.map((a: Answer) => a.id);
         const userAnswers = selectedAnswers[question.id] || [];
+
         if (
           userAnswers.length === correctIds.length &&
           userAnswers.every((id) => correctIds.includes(id))
         ) {
           totalScore += question.question_points;
         }
-        return {
+
+        return userAnswers.map((answerId) => ({
           id_question: question.id,
-          user_answer: userAnswers.map(String),
-        };
+          user_answer: Number(answerId),
+        }));
       })
     );
+
     setScore(totalScore);
     API_TESTS.results.grade({
       userId: user?.id,
       testId,
       subject: subjectName,
       theme: themeName,
-      results: solutions,
+      results: solutions.flat(),
       points: totalScore,
     });
   };
@@ -144,14 +146,6 @@ const TestComponent: React.FC<TestComponentProps> = ({
     );
   }
 
-  // console.log(
-  //   "selectedAnswers",
-  //   selectedAnswers,
-  //   Object.keys(selectedAnswers)
-  //     .map((index) => (selectedAnswers[index].length ? true : false))
-  //     .every((value) => value === true),
-  //   testData.questions.length
-  // );
   const question = testData.questions[currentQuestionIndex];
 
   return (

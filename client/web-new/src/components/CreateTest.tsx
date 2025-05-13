@@ -50,7 +50,6 @@ export const TestCreationPage: React.FC<TestCreationPageProps> = ({
   });
 
   const questionCount = watch("questionCount");
-  console.log(questionCount);
   const questions = watch("questions");
   const navigate = useNavigate();
 
@@ -128,7 +127,6 @@ export const TestCreationPage: React.FC<TestCreationPageProps> = ({
     max: number
   ) => {
     const value = Number(e.target.value);
-    console.log(!isNaN(value), value <= max);
     if (!isNaN(value) && value <= max && value >= min)
       setValue(
         prop as "questionCount" | `questions.${number}.${string}`,

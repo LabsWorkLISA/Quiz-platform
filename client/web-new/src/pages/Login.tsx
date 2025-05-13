@@ -43,7 +43,6 @@ export const Login: FC<{ isRegistration: boolean }> = ({ isRegistration }) => {
           username: data.userName,
           password: data.password,
         });
-        console.log("Registration success:", response.data);
         navigate("/login");
       } else {
         const response = await API_USER.login({
@@ -52,27 +51,13 @@ export const Login: FC<{ isRegistration: boolean }> = ({ isRegistration }) => {
         });
         if (response) {
           setUser(response?.data[0]);
-          // console.log(response.data.access_token, response.data.refresh_token);
-          //@NOTE Куки на стор, добавить рефреш на бэке
-          // cookies.set("access_token", response?.data.access_token);
-          // cookies.set("access_token", response?.data.refresh_token);
-          // localStorage.setItem("access_token", response?.data.access_token);
-          // localStorage.setItem("refresh_token", response?.data.refresh_token);
-          // setIsAuth(true);
           navigate("/");
         }
       }
     } catch (error) {
       console.error("Error:", error);
-      // Add error notification logic
     }
   };
-
-  // useEffect(() => {
-  //   if (cookies.get("access_token")) {
-  //     navigate("/");
-  //   }
-  // }, []);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 

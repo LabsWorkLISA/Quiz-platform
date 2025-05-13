@@ -4,8 +4,6 @@ import Cookies from "universal-cookie";
 export const cookies = new Cookies();
 
 const API_BASE_URL = import.meta.env.VITE_API_USER_URL;
-console.log(import.meta.env);
-
 const getAPIClient = axios.create({
   baseURL: `${API_BASE_URL}/users`,
 });
@@ -13,10 +11,8 @@ const getAPIClient = axios.create({
 getAPIClient.interceptors.request.use(
   (config) => {
     const token = cookies.get("access_token");
-    console.log("Token from cookies:", token);
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log("Authorization header added:", config.headers.Authorization);
     }
     return config;
   },
@@ -37,7 +33,6 @@ export const API_USER = {
         sendData,
         { withCredentials: true }
       );
-      console.log(answer.data);
       return answer;
     } catch (error) {
       console.log(error);

@@ -15,7 +15,6 @@ import { ToastContainer } from "react-toastify";
 
 export const App = () => {
   const { isLogged, clearUser } = useUsers();
-  console.log("isLogged", isLogged);
   const [isFullPanel, setIsFullPanel] = useState(true);
   useUsersAuthentication();
 

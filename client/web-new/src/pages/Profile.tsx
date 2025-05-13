@@ -37,7 +37,6 @@ const Profile = () => {
 
   useEffect(() => {
     createSets();
-    console.log("subjects", subjects);
   }, [results]);
 
   useEffect(() => {
@@ -64,13 +63,11 @@ const Profile = () => {
         const leadership = leadershipResponse.data;
 
         Analytic[s] = { analyticity: analyticity, leadership: leadership };
-        // console.log(details); // details.author_id - id автора
       });
 
       Promise.all(promises)
         .then(() => {
           setAnalytic(Analytic);
-          console.log("Analytic", analytic);
         })
         .catch((error) => {
           console.error("Error fetching test details for subject", error);
@@ -82,7 +79,6 @@ const Profile = () => {
     API_TESTS.results
       .getAllResults({ id: user?.id })
       .then((res) => {
-        console.log("LOAD RES-", res.data);
         setResults(res.data);
       })
       .catch((error) => {
@@ -93,14 +89,6 @@ const Profile = () => {
   const createSets = () => {
     setSubjects(Array.from(new Set(Array.from(results.map((r) => r.subject)))));
     setThemes(Array.from(new Set(Array.from(results.map((r) => r.theme)))));
-    console.log(
-      "results: ",
-      results,
-      "subjects: ",
-      subjects,
-      "themes:",
-      themes
-    );
   };
 
   const [isHiddenResults, setIsHiddenResults] = useState([]);

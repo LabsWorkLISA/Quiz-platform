@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import ResultTest from "../components/ResultTest";
 import SelectCourse from "../components/SelectCourse";
-import SolutionTest2 from "../components/SolutionTest2";
 import { API_SUBJECTS } from "../utils/api/apiSubjects";
 import { Box } from "@mui/material";
 import TestComponent from "../components/SolutionTest";
@@ -49,14 +48,6 @@ const Creation = () => {
                 goToText={"Перейти к решению теста"}
               />
             ) : (
-              // <SolutionTest2
-              //   subjectName={subjectName}
-              //   themeName={themeName}
-              //   setCountCorrect={setCountCorrect}
-              //   subjectId={subjectId}
-              //   themeId={themeId}
-              //   testId={testId}
-              // />
               <TestComponent
                 subjectName={subjectName}
                 themeName={themeName}

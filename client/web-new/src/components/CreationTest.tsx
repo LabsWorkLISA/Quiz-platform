@@ -104,8 +104,6 @@ const CreationTest = ({ subjectId, subjectName, themeId, themeName }) => {
     answers = [];
   }, []);
 
-  console.log(rightAnswer);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentCount < COUNT_QUESTION - 1) {
@@ -136,7 +134,6 @@ const CreationTest = ({ subjectId, subjectName, themeId, themeName }) => {
     } else {
       if (currentCount == COUNT_QUESTION - 1) {
         setCurrentCount((prev) => ++prev);
-        console.log(Object.values(variants), rightAnswer);
         questions.push({
           question_text: problem,
           answers: Object.values(variants).map((item) => ({
@@ -189,10 +186,6 @@ const CreationTest = ({ subjectId, subjectName, themeId, themeName }) => {
           });
         });
     }
-  };
-
-  const setRightAnswerForQuestion = (e) => {
-    console.log(e);
   };
 
   return (
