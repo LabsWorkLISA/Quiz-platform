@@ -30,7 +30,7 @@ class ResultsView(viewsets.ModelViewSet):
         subject = data.get('subject')
         theme = data.get('theme')
         points_user = data.get('points_user')
-        results = data.get('solutions', [])
+        solutions = data.get('solutions', [])
 
         serializer = TestUserSerializer(data={'id_user': id_user, 'id_test': id_test, 'subject': subject, 'theme': theme, 'points_user': points_user})
         if serializer.is_valid():
@@ -40,13 +40,11 @@ class ResultsView(viewsets.ModelViewSet):
 
         id_result = list(Result.objects.filter(id_user=id_user).filter(id_test=id_test).values_list('id', flat=True))[-1]
 
-        result_data = []
-        for result in results:
-            result['id_result'] = id_result
-            serializer = SolutionsResultsSerializer(data=result)
+        for solution in solutions:
+            solution['id_result'] = id_result
+            serializer = SolutionsResultsSerializer(data=solution)
             if serializer.is_valid():
                 serializer.save()
-                result_data.append(serializer.data)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         result = Result.objects.get(pk=id_result)

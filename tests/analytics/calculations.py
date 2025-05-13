@@ -67,12 +67,12 @@ def calculate_analyticity_test(student_id, test_id):
     total_max_points = test.max_points
     # Receive student test scores
     result = tests_models.Result.objects.filter(id_user=student_id, id_test=test_id).first()
-    points_user = result.points_user
+    score = result.score
     if total_max_points == 0:
         raise ValidationError("Invalid data")
 
     # Calculate the percentage of analyticity and convert it to a five-point scale
-    analyticity_test = int((points_user / total_max_points) * 100)
+    analyticity_test = int((score / total_max_points) * 100)
 
     return analyticity_test
 
